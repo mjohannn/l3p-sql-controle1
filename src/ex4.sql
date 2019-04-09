@@ -1,0 +1,8 @@
+SELECT CHB_NUM FROM T_CHAMBRE_CHB where CHB_NUM not in(
+Select cb.CHB_NUM from T_CHAMBRE_CHB cb inner join T_PLANNING_PLN pl on cb.CHB_NUM=pl.CHB_NUM
+WHERE PLN_LIBRE='False' AND PLN_JOUR BETWEEN '2000-01-11' AND '2000-01-14');
+
+
+Select cb.CHB_NUM,COALESCE(PLN_LIBRE, 'True') as PLN_LIBRE 
+from T_CHAMBRE_CHB cb left outer join T_PLANNING_PLN pl on cb.CHB_NUM=pl.CHB_NUM 
+where PLN_JOUR= '2000-01-13' or PLN_JOUR is null;
